@@ -1,2 +1,24 @@
-<h1>Categories#index</h1>
-<p>HELLO</p>
+<% if user_signed_in? %>
+
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+
+    <h1>Categories</h1>
+
+    <ul>
+      <% @categories.each do |category| %>
+          <li>
+            <%= link_to category.title, category%>
+          </li>
+      <% end %>
+    </ul>
+    <div>
+      <%= link_to "New Article", new_article_path %>
+    </div>
+<% else %>
+    <%= button_to "Sign in", new_user_session_path %>
+<% end %>
+
+
+
+
+
