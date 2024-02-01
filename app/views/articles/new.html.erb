@@ -4,30 +4,34 @@
     <div>
       <%= form.label :title %><br>
       <%= form.text_field :title %>
+      <% @article.errors.full_messages_for(:title).each do |message| %>
+          <div><%= message %></div>
+      <% end %>
     </div>
 
     <div>
       <%= form.label :description %><br>
       <%= form.text_area :description %>
+      <% @article.errors.full_messages_for(:description).each do |message| %>
+          <div><%= message %></div>
+      <% end %>
     </div>
 
     <div>
     <%= form.file_field :image %>
     </div>
-
+    <div>
+    <%= form.collection_check_boxes :categories, Category.order(:title), :id, :title %>
+      <% @article.errors.full_messages_for(:categories).each do |message| %>
+          <div><%= message %></div>
+      <% end %>
+    </div>
     <div>
       <%= form.submit %>
     </div>
 <% end %>
 
-<% @categories.each do |category| %>
-<form><label>Choose category:</label>
-  <select><%= category.title %></select>
-</form>
-<% end %>
 
 
 
-<div>
-  <%= @article.image.attach(params[:image]) %>
-</div>
+

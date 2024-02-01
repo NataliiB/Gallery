@@ -75,5 +75,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
   # Store files locally.
   config.active_storage.service = :local
-
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 end
