@@ -1,8 +1,9 @@
-
-
+<% if !current_user %>
+    <%= button_to "Sign in", new_user_session_path %>
+    <% else %>
     <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
 
-
+<% end %>
     <h1>Categories</h1>
 
     <ul>

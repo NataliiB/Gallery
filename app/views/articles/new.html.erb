@@ -21,8 +21,11 @@
     <%= form.file_field :image %>
     </div>
     <div>
-    <%= form.collection_check_boxes :categories, Category.order(:title), :id, :title %>
+      <%= form.collection_check_boxes :category_ids, Category.all, :id, :title, multiple: true %>
+
+
       <% @article.errors.full_messages_for(:categories).each do |message| %>
+
           <div><%= message %></div>
       <% end %>
     </div>
