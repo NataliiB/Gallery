@@ -13,15 +13,9 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.image.attach(params[:image])
-    #@article.categories.(params[:article][:categories].shift)
-    #@article.categories.update!(params[:article][:categories].shift)
-    #(:title =>params[:title],:description => params[:description],:categories => params[:article][:categories].shift)
-
-    @article.categories << Category.where(params[:article][:category_ids])
     @article.user_id = current_user.id
-    binding.pry
-    if @article.save
 
+    if @article.save
       redirect_to @article
     else
       render :new, status: :unprocessable_entity
@@ -44,6 +38,6 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :description, :image, :category_ids)
+    params.require(:article).permit(:title, :description, :image, category_ids: [])
   end
 end
