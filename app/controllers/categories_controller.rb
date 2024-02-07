@@ -21,9 +21,16 @@ class CategoriesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+  def delete
+    @category = Category.find(params[:id])
+    @article = @category.articles.find(params[article_ids])
+    @category.destroy
+    redirect_to category_path(@category), status: :see_other
+  end
 
   def category_params
-    params.require(:category).permit(:title, :description)
+    params.require(:category).permit(:title, :description,article_ids:[])
   end
+
 
 end

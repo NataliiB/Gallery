@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "filename" %>
 <h1>New Article</h1>
 
 <%= form_with model: @article do |form| %>
@@ -18,7 +19,7 @@
     </div>
 
     <div>
-    <%= form.file_field :image %>
+    <%= form.file_field :images, multiple:true %>
     </div>
     <div>
       <%= form.collection_check_boxes :category_ids, Category.all, :id, :title %>

@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.image.attach(params[:image])
+    @article.images.attach(params[:images])
     @article.user_id = current_user.id
 
     if @article.save
@@ -36,9 +36,15 @@ class ArticlesController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+  def delete
+    @article = Article.find(params[:id])
+    @category = @article.categories.find(params[category_ids])
+    @article.destroy
+    redirect_to articles_path, status: :see_other
+  end
 
   private
   def article_params
-    params.require(:article).permit(:title, :description, :image, category_ids: [])
+    params.require(:article).permit(:title, :description, images:[], category_ids: [])
   end
 end

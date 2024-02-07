@@ -2,7 +2,9 @@
 
 <p><%= @article.description %></p>
 
-<% if @article.image.attached? %>
-    <image src="<%= (url_for(@article.image))%>"/>
+<% if @article.images.attached? %>
+    <% @article.images.each do |i|%>
+        <image src="<%= (url_for(i))%>"/>
+    <% end %>
 <% end %>
 
