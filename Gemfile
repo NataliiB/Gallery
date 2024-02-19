@@ -9,6 +9,7 @@ gem "bootstrap", "~> 5.0"
 gem "sassc-rails"
 gem "jquery-rails"
 gem "haml-rails", "~> 2.0"
+gem "sassc-rails"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

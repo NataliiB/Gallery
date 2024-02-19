@@ -6,10 +6,12 @@
 <ul>
 <% @category.articles.each do |article| %>
     <li>
-      <%=link_to article.title, article_path  %>
-
+      <%=article.id%>
+      <%=link_to article.title, category_article_path(@category,article)  %>
     </li>
 <% end %>
+  <%= button_to "Sign out", destroy_user_session_path %>
+
 </ul>
 <% else %>
     <%= button_to "Sign in", new_user_session_path %>

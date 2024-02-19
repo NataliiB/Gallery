@@ -1,14 +1,19 @@
-= stylesheet_link_tag "index.css"
+= stylesheet_link_tag "index"
 %h1 Categories
-.container
-  .panel
-    .ring
-      - @categories.each do |category|
-      .card.card1
-        = link_to category.title, category
-          .border
-            .slide
-              .line
+%link{:href => "https://fonts.googleapis.com", :rel => "preconnect"}/
+%link{:crossorigin => "", :href => "https://fonts.gstatic.com", :rel => "preconnect"}/
+%link{:href => "https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap", :rel => "stylesheet"}/
+%link{:href => "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0", :rel => "stylesheet"}/
+%main
+  -@categories.each do |category|
+    .card
+      .card-content
+        %img{alt: "Sample photo", src: "#{category.articles[rand(category.articles.length-1)].images[rand(category.articles.length-1)]}"}/
+        %p
+        = link_to category.title, category_path(category)
+        %p
+        =category.description
+
 
 
 
@@ -16,11 +21,12 @@
 
 
 - if !current_user
-  = button_to "Sign in", new_user_session_path
+  %button.button-85{:role => "button-85"}
+    = button_to "Sign in", new_user_session_path
 - else
-  = button_to "Sign out", destroy_user_session_path, method: :delete
+  %button.button-85{:role => "button-85"}
+    = button_to "Sign out", destroy_user_session_path, method: :delete
 
 
-%div
-  = link_to "New Article", new_article_path
-%div= link_to "New Category", new_category_path
+
+

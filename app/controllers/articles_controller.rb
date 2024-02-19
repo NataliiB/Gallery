@@ -40,11 +40,11 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @category = @article.categories.find(params[category_ids])
     @article.destroy
-    redirect_to articles_path, status: :see_other
+    redirect_to category_articles_path, status: :see_other
   end
 
   private
   def article_params
-    params.require(:article).permit(:title, :description, images:[], category_ids: [])
+    params.require(:article).permit(:id, :title, :description, images:[], category_ids: [])
   end
 end

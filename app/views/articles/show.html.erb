@@ -1,8 +1,9 @@
 <h1><%= @article.title %></h1>
 
 <p><%= @article.description %></p>
-
+<%=@article.images.attached?%>
 <% if @article.images.attached? %>
+
     <% @article.images.each do |i|%>
         <image src="<%= (url_for(i))%>"/>
     <% end %>

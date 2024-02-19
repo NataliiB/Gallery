@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   root 'categories#index'
   resources :users
-  resources :categories
-  resources :articles
-
+  resources :articles, only: [:new, :create]
+  resources :categories do
+    resources :articles
+    end
 end
+
