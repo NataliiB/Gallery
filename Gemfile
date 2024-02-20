@@ -50,6 +50,7 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
+# gem "rack-cors"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -62,7 +63,7 @@ group :development do
   gem 'pry-rails', '~> 0.3.9'
   gem 'letter_opener', '~> 1.8', '>= 1.8.1'
   gem 'rubocop-rails', require: false
-
+  gem "rails_live_reload"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

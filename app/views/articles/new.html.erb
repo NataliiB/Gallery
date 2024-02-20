@@ -19,7 +19,8 @@
     </div>
 
     <div>
-    <%= form.file_field :images, multiple:true %>
+      <%= form.label :images %>
+      <%= form.file_field :images, multiple:true %>
     </div>
     <div>
       <%= form.collection_check_boxes :category_ids, Category.all, :id, :title %>

@@ -21,12 +21,8 @@
 
 
 - if !current_user
-  %button.button-85{:role => "button-85"}
-    = button_to "Sign in", new_user_session_path
+  = button_to "Sign in", new_user_session_path, :class => 'button-83'
 - else
-  %button.button-85{:role => "button-85"}
-    = button_to "Sign out", destroy_user_session_path, method: :delete
-
-
+  = button_to "Sign out", destroy_user_session_path, method: :delete, :class => 'button-83'
 
 
