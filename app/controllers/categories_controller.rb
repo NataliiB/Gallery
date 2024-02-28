@@ -1,10 +1,14 @@
 class CategoriesController < ApplicationController
   def index
-      @categories = Category.all
+    @categories = Category.all
   end
 
   def show
+    if current_user
       @category = Category.find(params[:id])
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def new
@@ -21,6 +25,7 @@ class CategoriesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
   def delete
     @category = Category.find(params[:id])
     @article = @category.articles.find(params[article_ids])
@@ -29,8 +34,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:id, :title, :description,article_ids:[])
+    params.require(:category).permit(:title, :description, article_ids: [])
   end
-
-
 end

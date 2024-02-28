@@ -1,13 +1,14 @@
 class ArticlesController < ApplicationController
-
   def index
     @articles = Article.all
   end
+
   def show
     @article = Article.find(params[:id])
+    @category = Category.find(params[:category_id])
   end
-  def new
 
+  def new
     @article = Article.new
   end
 
@@ -18,7 +19,8 @@ class ArticlesController < ApplicationController
 
     if @article.save
 
-      redirect_to category_article_path(category_id: params[:article][:category_ids].compact_blank.first, id: @article.id)
+      redirect_to category_article_path(category_id: params[:article][:category_ids].compact_blank.first,
+                                        id: @article.id)
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,19 +34,21 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to category_article_path(:category_ids.last)
+      redirect_to category_article_path, status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
   end
-  def delete
+
+  def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    redirect_to category_articles_path, status: :see_other
+    redirect_to category_path(params[:category_id])
   end
 
   private
+
   def article_params
-    params.require(:article).permit(:title, :description, images:[], category_ids: [])
+    params.require(:article).permit(:title, :description, images: [], category_ids: [])
   end
 end

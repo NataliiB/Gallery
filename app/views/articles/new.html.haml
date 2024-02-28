@@ -1,0 +1,29 @@
+=stylesheet_link_tag 'article_new'
+%h1 New Article
+= form_with model: @article do |form|
+  %div
+    = form.label :title
+    %br/
+    = form.text_field :title
+    - @article.errors.full_messages_for(:title).each do |message|
+      %div= message
+  %div
+    = form.label :description
+    %br/
+    = form.text_area :description
+    - @article.errors.full_messages_for(:description).each do |message|
+      %div= message
+  %div
+    = form.label :images
+    = form.file_field :images, multiple:true
+  %div
+    = form.collection_check_boxes :category_ids, Category.all, :id, :title
+    - @article.errors.full_messages_for(:categories).each do |message|
+      %div= message
+  .submit
+    = form.submit
+
+
+
+
+
