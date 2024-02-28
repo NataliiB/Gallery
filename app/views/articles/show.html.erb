@@ -1,8 +1,0 @@
-<h1><%= @article.title %></h1>
-
-<p><%= @article.description %></p>
-
-<% if @article.image.attached? %>
-    <image src="<%= (url_for(@article.image))%>"/>
-<% end %>
-

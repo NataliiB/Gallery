@@ -1,0 +1,21 @@
+= stylesheet_link_tag 'category_show'
+%h1= @category.title
+%p= @category.description
+%h2 Articles
+-#%ul
+-#  - @category.articles.each do |article|
+-#    %li
+-#      = article.id
+-#      = link_to article.title, category_article_path(category_id:@category.id,id: article.id)
+-#      %img{alt: "Sample photo", src: "#{(url_for(article.images.first))}"}/
+-#
+
+%main
+  .container
+    - @category.articles.each do |article|
+      %a.card{href: "#{category_article_path(@category,article)}"}
+        .card-content
+          %h2.title
+          =article.title
+          %img{alt: 'Category photo', src: "#{(url_for(article.images.first))}"}/
+          %p
