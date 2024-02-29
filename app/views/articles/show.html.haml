@@ -1,0 +1,9 @@
+= stylesheet_link_tag 'article_show'
+%h1= @article.title
+.description
+  =@article.description
+- if @article.images.attached?
+  - @article.images.each do |i|
+    %image{src: "#{(url_for(i))}"}
+= button_to 'Delete article', category_article_path(@category,@article), method: :delete
+

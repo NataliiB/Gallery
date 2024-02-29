@@ -1,0 +1,22 @@
+=stylesheet_link_tag 'category_new'
+%h1 New Category
+= form_with model: @category do |form|
+  %div
+    = form.label :title
+    %br/
+    = form.text_field :title
+    - @category.errors.full_messages_for(:title).each do |message|
+      %div= message
+  %div
+    = form.label :description
+    %br/
+    = form.text_area :description
+    - @category.errors.full_messages_for(:description).each do |message|
+      %div= message
+  .submit
+    = form.submit
+
+
+
+
+

@@ -1,0 +1,16 @@
+= stylesheet_link_tag 'category_index'
+%link{:href => "https://fonts.googleapis.com", :rel => "preconnect"}/
+%link{:crossorigin => "", :href => "https://fonts.gstatic.com", :rel => "preconnect"}/
+%link{:href => "https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap", :rel => "stylesheet"}/
+%link{:href => "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0", :rel => "stylesheet"}/
+%main
+  .container
+    -@categories.each do |category|
+      %a.card{href: "#{category_path(category)}"}
+        .card-content
+          %h2.title
+          =category.title
+          %img{alt: 'Category photo', src: "#{(url_for(category.articles.first.images.first))}"}/
+          %p
+          =category.description
+

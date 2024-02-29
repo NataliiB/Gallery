@@ -1,10 +1,14 @@
 class CategoriesController < ApplicationController
   def index
-      @categories = Category.all
+    @categories = Category.all
   end
 
   def show
+    if current_user
       @category = Category.find(params[:id])
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def new
@@ -22,8 +26,14 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def category_params
-    params.require(:category).permit(:title, :description)
+  def delete
+    @category = Category.find(params[:id])
+    @article = @category.articles.find(params[article_ids])
+    @category.destroy
+    redirect_to category_path(@category), status: :see_other
   end
 
+  def category_params
+    params.require(:category).permit(:title, :description, article_ids: [])
+  end
 end
