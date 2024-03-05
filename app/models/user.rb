@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_secure_password
   before_create :confirmation_token
   has_one_attached :avatar
   has_many :categories
